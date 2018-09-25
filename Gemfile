@@ -58,3 +58,50 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Motor SIP
+gem 'sip', github: 'pasosdeJesus/sip'
+
+# Anexos
+gem 'paperclip'                  
+
+# Formularios
+gem 'simple_form'  
+              
+# Control de acceso
+gem 'cancancan'                  
+
+# Autenticación
+gem 'devise'   
+
+# Localización e Internacionalización                  
+gem 'devise-i18n'                
+
+# Localización e Internacionalización
+gem 'rails-i18n'                 
+
+# Pagina listados
+gem 'will_paginate'              
+
+# Entorno CSS Bootstrap
+gem 'twitter-bootstrap-rails'    
+
+# Iconos de FontAwesome
+gem 'font-awesome-rails'
+         
+# Usamos jquery
+gem 'jquery-ui-rails'            
+
+# Control para elegir fechas
+gem 'bootstrap-datepicker-rails' 
+
+# Localiación e internacionalización
+gem 'twitter_cldr'               
+
+# Campos de selección más funcionales
+gem 'chosen-rails'               
+
+# Usamos jquery
+gem 'jquery-rails'               
+
+# Usamos jquery
+gem 'jquery-ui-rails'            

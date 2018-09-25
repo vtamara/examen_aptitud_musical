@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 'viewport' (ventana de visualización) es el área visible del usuario de una página web.
+		'width=device-width' establece el ancho de la página en relación fija con el ancho de la
+		pantalla sin importar si cambia de dispositivo.
+		'initial-scale=1.0' fija el nivel inicial del zoom cuando la página se carga por primera vez.-->
+    <title>ExApMusUA</title>
+    <%= csrf_meta_tags %>
+
+    <%=  yield(:linkhref) if content_for?(:linkhref) %>
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <%= javascript_include_tag "application" %>  
+</head>
+<body>
+	<audio id="fileInterv">Este navegador no puede reproducir el audio de este examen.</audio>
+	<div class="contenedor">
+		<!-- Logo Facultad-->
+		<div class="fila">
+			<div class="col-12">
+				<img id="im1" src="../grafs/LogoRojoFacultad.png">
+			</div>
+		</div>
+		<!-- Encabezado Examen Aptitud Musical -->
+		<div class="fila">
+			<div class="col-2"></div>
+			<div class="col-8"  style="padding-top:0px">
+				<img id="im1" src="../grafs/LogoCompleto.png">
+				<img id="im1" src="../grafs/TituloExApMus.png">
+				<img id="im2" src="../grafs/RegPartes2.png">
+			</div>
+			<div class="col-2"></div>
+		</div>
+
+		<!-- Zona de usuario -->
+		<div class="fila" id="zonat0">
+			<div class="col-3"></div>
+			<div class="col-6">
+				<img id="im3" src="../grafs/1SentRit.png">
+			</div>
+			<div class="col-3"></div>
+		</div>
+
+		<div class="fila" id="zonat1">
+			<div class="col-12"></div>
+		</div>
+
+		<div class="fila" id="zonat2">
+			<div class="col-4"></div>
+			<div class="col-4">
+				<img id="p0" class="punto" src="../grafs/PuntoB.png">
+				<img id="p1" class="punto" src="../grafs/PuntoA.png">
+				<img id="p2" class="punto" src="../grafs/PuntoA.png">
+				<img id="p3" class="punto" src="../grafs/PuntoA.png">
+				<img id="p4" class="punto" src="../grafs/PuntoA.png">
+				<img id="p5" class="punto" src="../grafs/PuntoA.png">
+			</div>
+			<div class="col-4"></div>
+		</div>
+
+		<div class="fila" id="zonat3">
+			<div class="col-12"></div>
+		</div>
+
+		<div class="fila" id="zonat4">
+			<div class="col-4"></div>
+			<div class="col-2">
+				<img id="play" src="../grafs/play1.png" onclick="enviarAudio()" onmouseenter="iluminar('play',0.9)" onmouseleave="iluminar('play',0.6)">
+			</div>
+			<div class="col-3">
+				<img id="grab" src="../grafs/Grabando1.png" onclick="grabar()" onmouseenter="iluminar('grab',0.9)" onmouseleave="iluminar('grab',0.6)">
+			</div>
+			<div class="col-3"></div>
+		</div>
+
+		<div class="fila" id="zonat5">
+			<div class="col-12"></div>
+		</div>
+
+		<div class="fila" id="zonat6">
+			<div class="col-12"></div>
+		</div>
+
+		<div class="fila" id="zonat7">
+			<div class="col-4"></div>
+			<div class="col-4">
+				<audio id="audio" controls></audio>
+			</div>
+			<div class="col-2">
+				<img id="btn1" src="../grafs/continuar.jpg" onclick="cambiarAudio()">
+			</div>
+			<div class="col-2"></div>
+		</div>
+
+		<!-- Cabezote inferior de página -->
+		<div class="fila">
+
+			<div class="col-2"></div>
+			<div class="col-8"  style="padding-bottom:0px">
+				<img id="im2" src="../grafs/PieNombreAspirante.png">
+			</div>
+			<div class="col-2"></div>
+		
+		</div>
+		<div class="fila">
+
+			<div class="col-12" style="padding-top:0px">
+				<img id="im1" src="../grafs/PiePagina.png">
+			</div>
+
+		</div>
+
+
+	</div>
+	<script type="text/javascript">
+		//=========================== Captura y grabación de los datos de audio ======================//
+		window.onload = function () {
+			// En esta implemntación se supone que el navegador no tiene conflictos con 'getUserMedia'.
+			// Como es una implementación relativamente nueva solo funciona en versiones modernas de algunos navegadores.
+			// Obtiene los datos de audio del micrófono del computador, si el usuario lo autoriza. 
+			navigator.mediaDevices.getUserMedia({
+		    	audio: true
+			})
+		    .then(function (stream) {
+		  		// En esta variable captura los datos de audio
+		    	recorder = new MediaRecorder(stream);
+		    	// listen to dataavailable, which gets triggered whenever we have
+    			// an audio blob available
+    			recorder.addEventListener('dataavailable', escucharGrabacion);
+		  	});
+		}
+		function inicarGrabacion() {
+		  recorder.start();
+		}
+
+		function detenerGrabacion() {
+		 // Al detener la grabación del audio, se diapara el evento `dataavailable` el cual permite completar el proceso de grabación.
+		  recorder.stop();
+		}
+
+		function escucharGrabacion(e) {
+		  var audio = document.getElementById('audio');
+		  // e.data contiene un objeto 'blob' con los datos del audio
+      audio.src = URL.createObjectURL(e.data);
+      // window.grabus tendra ultima grabacion del usuario
+      window.grabus = e.data
+		  audio.play();
+		}
+		
+		//===========================================================================================//
+
+		var listaAudios = ["Rit1.mp3","Rit2.mp3","Rit3.mp3","Rit4.mp3","Rit5.mp3","Rit6.mp3"];
+		var index = 0;
+		var audio = "../audios/1Ritmo/ritmos/" + listaAudios[index];
+		var son = document.getElementById("fileInterv");
+		var marcaEjercicio = [1,0,0,0,0,0];
+		son.addEventListener('ended', function () {
+    		document.getElementById("play").src = "../grafs/play1.png";
+    		document.getElementById("grab").style.display = 'block';
+			}, false);
+		function enviarAudio(){
+			// Solo permite escuchar un ejercicio si NO está grabando una respuesta
+			if (rec == "stop") {
+				document.getElementById("grab").style.display = 'none';
+				tocaAudio(audio);
+			};
+		}
+		function cambiarAudio(){
+			// Solo permite cambiar de ejercicio cuando NO está grabando una respuesta
+			if (rec == "stop") {
+				if (marcaEjercicio[index] < 2) {
+					marcaEjercicio[index] = 2;
+				};
+				if (index < 5) {
+					document.getElementById("grab").style.display = 'none';
+					document.getElementById("btn1").style.display = 'none';
+					index++;
+					sumaUno(index, marcaEjercicio);
+					audio = "../audios/1Ritmo/ritmos/" + listaAudios[index];
+          console.log(audio);
+    // https://stackoverflow.com/questions/13333378/how-can-javascript-upload-a-blob
+          //debugger
+          var fd = new FormData();
+          fd.append('fname', 'test.wav');
+          fd.append('data', window.grabus);
+          fd.append('index', index);
+          fd.append('ejercicio', 1);
+          $.ajax({
+            type: 'POST',
+            url: '/reciberesp.json',
+            data: fd,
+            processData: false,
+            contentType: false
+            }).done(function(data) {
+              console.log(data);
+          });
+            // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Sending_and_Receiving_Binary_Data
+//          var oReq = new XMLHttpRequest();
+//          oReq.open("POST", 'reciberesp.json', true);
+//          oReq.onload = function (oEvent) {
+//            alert('enviado');
+//          }
+//          oReq.setRequestHeader("Authorization", "Token " + 
+//                $('meta[name="csrf-token"]').attr('content'));
+//          oReq.setRequestHeader('X-CSRF-Token', 
+//          $('meta[name="csrf-token"]').attr('content'))
+//          oReq.send(window.grabus);
+				} else{
+					avanzar(2);
+				};
+			};
+		}
+	</script>
+
+</body>
+</html>
+

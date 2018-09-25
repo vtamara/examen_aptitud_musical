@@ -1,0 +1,164 @@
+/*
+GLOBAL, con * se definen los estilos globales de toda la página.
+*/
+*{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	text-decoration: none;
+	font-family: sans-serif;
+	box-sizing: border-box;
+}
+.contenedor{
+	position: relative;
+	margin: auto;
+	width: 100%;
+	height: auto;
+}
+.fila{
+	position: relative;
+	margin: auto;
+	width: 100%;
+	height: auto;
+	clear: both; /* Propiedad para no permitir que las cajas de otras filas se acomoden en los espacios vacíos de otras */
+
+}
+/* De esta forma se agrupan las propiedades comunes a las clases 'col-' */
+[class*="col-"]{
+	float: left;
+	padding: 10px;
+}
+.col-12{width: 100%;}
+.col-11{width: 91.66666667%;}
+.col-10{width: 83.33333333%;}
+.col-9{width: 75%;}
+.col-8{width: 66.66666667%;}
+.col-7{width: 58.33333333%;}
+.col-6{width: 50%;}
+.col-5{width: 41.66666667%;}
+.col-4{width: 33.33333333%;}
+.col-3{width: 25%;}
+.col-2{width: 16.66666667%;}
+.col-1{width: 8.33333333%;}
+
+.punto{
+	position: relative;
+	width: 4%;
+}
+
+#inicio{
+	width: 100%;
+	border-radius: 4px;
+	display: none;
+}
+#im0{
+	width: 100%;
+}
+#im1{
+	width: 100%;
+}
+#im2{
+	width: 100%;
+}
+#im3{
+	position: relative;
+	width: 35%;
+	left: 35%;
+}
+#im33{
+	position: relative;
+	width: 70%;
+	left: 20%;
+}
+#im30{
+	position: relative;
+	width: 40%;
+	left: 10%;
+}
+#im40{
+	position: relative;
+	width: 18%;
+	left: 32%;
+}
+#im4{
+	position: relative;
+	width: 55%;
+	left: 25%;
+}
+#im5{
+	position: relative;
+	width: 80%;
+	left: 10%;
+}
+#im6{
+	position: relative;
+	width: 47%;
+	left: 28%;
+}
+#im7{
+	position: relative;
+	width: 60%;
+	left: 20%;
+}
+#input1{
+	position: absolute;
+	width: 30%;
+	left: 42%;
+	font-size: 18px;
+}
+#input2{
+	position: absolute;
+	width: 15%;
+	left: 42%;
+	font-size: 18px;
+}
+#btn1{
+	position: relative;
+	left: 40%;
+	width: 45%;
+	border-radius: 4px;
+	opacity: 0.9;
+	display: none;
+
+}
+#btn2{
+	position: relative;
+	width: 75%;
+	left: 25%;
+	border-radius: 4px;
+	opacity: 0.9;
+}
+#play{
+	position: relative;
+	width: 50%; 
+	left: 30%;
+	opacity: 0.6;
+}
+#grab{
+	position: relative;
+	padding-top: 10%;
+	vertical-align: center;
+	width: 50%;
+	left: 0%;
+	opacity: 0.6;
+	display: none;
+}
+#p0{
+	left: 15%;
+}
+#p1{
+	left: 25%;
+}
+#p2{
+	left: 35%;
+}
+#p3{
+	left: 45%;
+}
+#p4{
+	left: 55%;
+}
+#p5{
+	left: 65%;
+}
+
