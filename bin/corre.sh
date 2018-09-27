@@ -8,7 +8,7 @@ if (test "$RC" = "") then {
 	export RC=sivel2
 } fi;
 if (test "$RAILS_ENV" = "development") then {
-	bin/rails s -p $PUERTODES -b $IPDES
+	PORT=$PUERTODES bin/rails s -p $PUERTODES -b "ssl://$IPDES:$PUERTODES?key=$LLAVE&cert=$CERT"
 } else {
 	if (test ! -f /etc/rc.d/$RC) then {
 		echo "Falta script /etc/rc.d/$RC"
