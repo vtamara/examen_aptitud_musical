@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
   resources :usuarios, path_names: { new: 'nuevo', edit: 'edita' }  
 
+  get 'calificar' => 'usuarios#calificar', as: :calificar
   post "reciberesp" => 'sip/hogar#reciberesp'
   root 'sip/hogar#index'
   mount Sip::Engine, at: "/"

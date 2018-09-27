@@ -1,0 +1,17 @@
+<ul>
+  <% Usuario.where(rol: 5).order(:nombre).each do |u|%>
+    <li><%= u.id %> - <%= u.nombre %>: 
+      <table border="1">
+        <tr>
+        <% u.respusuario.each do |r| %>
+          <td>
+            <%= r.index %>, <%= r.ejercicio %>, 
+            <a download='audio-<%= u.id %>-<%= r.index %>-<%= r.ejercicio %>.webm' 
+             href="data:audio/webm;base64,<%= Base64.encode64(r.audio) %>">
+             Descargar</a>
+          </td>
+        <% end %>
+        </tr>
+      </table>
+  <% end %>
+</ul>
