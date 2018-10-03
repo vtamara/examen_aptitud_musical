@@ -105,3 +105,9 @@ gem 'jquery-rails'
 
 # Usamos jquery
 gem 'jquery-ui-rails'            
+
+group :production do
+  # Para despliegue
+  gem "unicorn"
+end
+
