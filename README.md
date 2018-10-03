@@ -1,24 +1,7 @@
-# README
+# Prototipo de examen de aptitud musical
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Enfasis en explorar viabilidad de usar WebRTC API para grabar
+y que la grabación pudiera almacenarse en base de datos.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Por el momento el rol administrador es como profesor y el rol 
+operador es estudiante
